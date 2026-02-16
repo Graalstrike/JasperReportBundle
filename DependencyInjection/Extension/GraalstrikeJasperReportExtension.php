@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Graalstrike\JasperReportBundle\DependencyInjection;
+namespace Graalstrike\JasperReportBundle\DependencyInjection\Extension;
 
 use Exception;
+use Graalstrike\JasperReportBundle\DependencyInjection\Configuration;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
