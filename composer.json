@@ -1,5 +1,5 @@
 {
-  "name": "Graalstrike/jasper-report-bundle",
+  "name": "graalstrike/jasper-report-bundle",
   "description": "Symfony 6-7 / Symfony Flex Bundle integrating the Jaspersoft REST v2 client (jaspersoft/rest-client)",
   "type": "symfony-bundle",
   "authors": [
@@ -24,3 +24,4 @@
     }
   }
 }
+
