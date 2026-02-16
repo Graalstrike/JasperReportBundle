@@ -28,15 +28,6 @@
         <service id="Graalstrike\JasperReportBundle\ReportService" alias="jasperreport.reportservice" />
 
         <service
-                id="jasperreport.importexportservice"
-                class="Graalstrike\JasperReportBundle\ImportExportService"
-                shared="true">
-            <factory service="jasperreport.factory" method="getImportExportService"/>
-        </service>
-
-        <service id="Graalstrike\JasperReportBundle\ImportExportService" alias="jasperreport.importexportservice" />
-
-        <service
                 id="jasperreport.repositoryservice"
                 class="Graalstrike\JasperReportBundle\RepositoryService"
                 shared="true">
@@ -44,21 +35,5 @@
         </service>
 
         <service id="Graalstrike\JasperReportBundle\RepositoryService" alias="jasperreport.repositoryservice" />
-
-        <service id="Graalstrike\JasperReportBundle\Command\SearchRepositoryCommand">
-            <argument type="service" id="jasperreport.repositoryservice" />
-            <tag name="console.command"/>
-        </service>
-
-        <service id="Graalstrike\JasperReportBundle\Command\ExportResourceCommand">
-            <argument type="service" id="jasperreport.importexportservice" />
-            <tag name="console.command"/>
-        </service>
-
-        <service id="Graalstrike\JasperReportBundle\Command\ImportResourceCommand">
-            <argument type="service" id="jasperreport.importexportservice" />
-            <tag name="console.command"/>
-        </service>
-
     </services>
 </container>

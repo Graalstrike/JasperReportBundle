@@ -1,31 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Graalstrike\JasperReportBundle;
 
+use Exception;
 use Jaspersoft\Dto\Resource\File;
 use Jaspersoft\Dto\Resource\Resource;
+use Jaspersoft\Exception\RESTRequestException;
 use Jaspersoft\Service\Criteria\RepositorySearchCriteria;
+use Jaspersoft\Service\RepositoryService as JasperRepositoryService;
 use Jaspersoft\Service\Result\SearchResourcesResult;
 
 class RepositoryService
 {
-    /**
-     * @var \Jaspersoft\Service\RepositoryService
-     */
-    private $jaserRepositoryService;
-
-    /**
-     * RepositoryService constructor.
-     */
-    public function __construct(\Jaspersoft\Service\RepositoryService $repositoryService)
-    {
-        $this->jaserRepositoryService = $repositoryService;
-    }
+    public function __construct(private JasperRepositoryService $jaserRepositoryService) {}
 
     /**
      * Search repository by criteria
      */
-    public function searchResources(RepositorySearchCriteria $criteria = null)
+    public function searchResources(?RepositorySearchCriteria $criteria = null)
     {
         return $this->jaserRepositoryService->searchResources($criteria);
     }
@@ -34,6 +28,8 @@ class RepositoryService
      * Get resource by URI
      * 
      * @param bool $expanded Return sub resources as definitions and not references?
+     * 
+     * @throws RESTRequestException
      */
     public function getResource(string $uri, bool $expanded = false): Resource
     {
@@ -42,6 +38,8 @@ class RepositoryService
 
     /**
      * Obtain the raw binary data of a file resource stored on the server (e.x: image)
+     * 
+     * @throws RESTRequestException
      */
     public function getBinaryFileData(File $file)
     {
@@ -60,7 +58,7 @@ class RepositoryService
      * 
      * @throws \Exception
      */
-    public function createResource(Resource $resource, string $parentFolder = null, bool $createFolders = true): Resource
+    public function createResource(Resource $resource, ?string $parentFolder = null, bool $createFolders = true): Resource
     {
         return $this->jaserRepositoryService->createResource($resource, $parentFolder, $createFolders);
     }
@@ -70,6 +68,8 @@ class RepositoryService
      *
      * @param resource $resource  Resource object fully describing updated resource
      * @param bool     $overwrite Replace existing resource even if type differs?
+     * 
+     * @throws RESTRequestException
      */
     public function updateResource(Resource $resource, bool $overwrite = false): Resource
     {
@@ -78,10 +78,9 @@ class RepositoryService
 
     /**
      * Update a file on the server by supplying binary data
-     *
-     * @param \Jaspersoft\Dto\Resource\File $resource A resource descriptor for the File
      * @param string $binaryData The binary data of the file to update
-     * @return \Jaspersoft\Dto\Resource\Resource
+     *
+     * @throws RESTRequestException
      */
     public function updateFileResource(File $resource, string $binaryData): Resource
     {

@@ -1,33 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Graalstrike\JasperReportBundle;
 
 use Jaspersoft\Client\Client;
-use Graalstrike\JasperReportBundle\ReportService;
-use Graalstrike\JasperReportBundle\ImportExportService;
-use Graalstrike\JasperReportBundle\RepositoryService;
+
 
 class Factory
 {
-    /**
-     * @var Client $reportClient
-     */
-    private $reportClient;
-
-    /**
-     * @var ReportService $reportService
-     */
-    private $reportService;
-
-    /**
-     * @var ImportExportService $importExportService
-     */
-    private $importExportService;
-
-    /**
-     * @var RepositoryService $repositoryService
-     */
-    private $repositoryService;
+     private Client $reportClient;
+    private ReportService $reportService;
+    private ImportExportService $importExportService;
+    private RepositoryService $repositoryService;
 
     public function createClient($config): void
     {
@@ -39,16 +24,13 @@ class Factory
         $this->reportClient = new Client($server_url, $username, $password, $org_id);
 
         if ( isset($config['timeout']) ) {
-            $timeout = intval($config['timeout']);
+            $timeout = (int) $config['timeout'];
             if ( is_numeric($config['timeout']) && $timeout > 0 ) {
                 $this->reportClient->setRequestTimeout( $timeout );
             }
         }
     }
 
-    /**
-     * @return Client
-     */
     public function getClient(): Client
     {
         return $this->reportClient;
@@ -56,8 +38,6 @@ class Factory
 
     /**
      * get report-service
-     *
-     * @return \Graalstrike\JasperReportBundle\ReportService
      */
     public function getReportService(): ReportService
     {
@@ -66,20 +46,6 @@ class Factory
             $this->reportService = new ReportService( $this->reportClient->reportService() );
         }
         return $this->reportService;
-    }
-
-    /**
-     * get export-/import-service
-     *
-     * @return \Graalstrike\JasperReportBundle\ImportExportService
-     */
-    public function getImportExportService(): ImportExportService
-    {
-        if ( ! isset( $this->importExportService ) )
-        {
-            $this->importExportService = new ImportExportService( $this->reportClient->importExportService() );
-        }
-        return $this->importExportService;
     }
 
     /**

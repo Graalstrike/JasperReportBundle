@@ -11,9 +11,6 @@ The JasperReportBundle requires jaspersoft/rest-client and provides an JasperRep
 [Installation](#installation)<br>
 [Basic Usage](#basic-usage-in-symfony)<br>
 [Search Resource Command](#search-resource-command)<br>
-[Export Resource Command](#export-resource-command)<br>
-[Import Resource Command](#import-resource-command)<br>
-[Copying Resources between different servers](#copying-resources-between-different-servers)<br>
 [Additional configuration options](#additional-configuration-options)<br>
 
 ## Installation
