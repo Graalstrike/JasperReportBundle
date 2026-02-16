@@ -5,7 +5,6 @@ namespace Graalstrike\JasperReportBundle;
 use Jaspersoft\Dto\ImportExport\ExportTask;
 use Jaspersoft\Dto\ImportExport\ImportTask;
 use Jaspersoft\Dto\ImportExport\TaskState;
-use Symfony\Component\Filesystem\Filesystem;
 
 class ImportExportService
 {
@@ -16,7 +15,6 @@ class ImportExportService
 
     /**
      * ImportExportService constructor.
-     * @param \Jaspersoft\Service\ImportExportService $importExportService
      */
     public function __construct(\Jaspersoft\Service\ImportExportService $importExportService)
     {
@@ -25,11 +23,8 @@ class ImportExportService
 
     /**
      * Begin an export task
-     *
-     * @param \Jaspersoft\Dto\ImportExport\ExportTask $exportTask
-     * @return \Jaspersoft\Dto\ImportExport\TaskState
      */
-    public function startExportTask(ExportTask $exportTask)
+    public function startExportTask(ExportTask $exportTask): TaskState
     {
         return $this->jasperImportExportService->startExportTask($exportTask);
     }
@@ -38,9 +33,8 @@ class ImportExportService
      * Retrieve the state of your export request
      *
      * @param int|string $id task ID
-     * @return \Jaspersoft\Dto\ImportExport\TaskState
      */
-    public function getExportState($id)
+    public function getExportState($id): TaskState
     {
         return $this->getExportState($id);
     }
@@ -48,11 +42,9 @@ class ImportExportService
     /**
      * Begin an import task
      *
-     * @param \Jaspersoft\Dto\Importexport\ImportTask $importTask
      * @param string $file_data Raw binary data of import zip
-     * @return \Jaspersoft\Dto\ImportExport\TaskState
      */
-    public function startImportTask(ImportTask $importTask, $file_data)
+    public function startImportTask(ImportTask $importTask, $file_data): TaskState
     {
         return $this->jasperImportExportService->startImportTask($importTask, $file_data);
     }
@@ -61,31 +53,26 @@ class ImportExportService
      * Obtain the state of an ongoing import task
      *
      * @param int|string $id
-     * @return \Jaspersoft\Dto\ImportExport\TaskState
      */
-    public function getImportState($id)
+    public function getImportState($id): TaskState
     {
         return $this->jasperImportExportService->getImportState($id);
     }
 
     /**
-     * export resource from jasper server
-     *
-     * @param $uri
-     * @param string $filename
-     * @param boolean $skipDependentResources
-     * @param int $refreshSec
+     * export resource from jasper server 
      */
-    public function exportResource($uri, $filename = "export", $skipDependentResources = false,
-                                   $refreshSec = 3, $silent = true)
-    {
-        /** @var ExportTask $exportTask */
+    public function exportResource(
+        $uri, string $filename = "export",
+        bool $skipDependentResources = false,
+        int $refreshSec = 3, $silent = true
+    ): void {
         $exportTask = new ExportTask();
 
-        array_push($exportTask->uris, $uri );
+        $exportTask->uris[] = $uri;
 
         if ( $skipDependentResources ) {
-            array_push($exportTask->parameters, "skip-dependent-resources" );
+            $exportTask->parameters[] = 'skip-dependent-resources';
         }
 
         /** @var TaskState $taskState */
@@ -123,15 +110,13 @@ class ImportExportService
 
     /**
      * import resource from file to jasper server
-     *
-     * @param string $filename
-     * @param bool $includebrokenDependencies
-     * @param int $refreshSec
      */
-    public function importResource($filename = "export", $includebrokenDependencies = false,
-                                   $refreshSec = 3, $silent = true)
-    {
-        /** @var ImportTask $importTask */
+    public function importResource(
+        string $filename = "export",
+        bool $includeBrokenDependencies = false,
+        int$refreshSec = 3,
+        $silent = true
+        ): void {
         $importTask = new ImportTask();
 
         $importTask->update = true;
@@ -140,11 +125,10 @@ class ImportExportService
         $importTask->includeMonitoringEvents = false;
         $importTask->includeServerSettings = false;
 
-        if ( $includebrokenDependencies ) {
+        if ( $includeBrokenDependencies ) {
             $importTask->brokenDependencies = "include";
         }
 
-        /** @var TaskState $taskState */
         $taskState = $this->jasperImportExportService->startImportTask($importTask, file_get_contents($filename));
 
         if ( ! $silent ) {

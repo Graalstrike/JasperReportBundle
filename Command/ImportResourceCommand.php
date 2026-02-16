@@ -6,8 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use Hboie\JasperReportBundle\ImportExportService;
+use Graalstrike\JasperReportBundle\ImportExportService;
 
 use Jaspersoft\Dto\Resource\Resource;
 
@@ -24,20 +23,20 @@ class ImportResourceCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('jasper:import:resource')
             ->setDescription('Import Resource from Jasper-Server')
             ->addArgument('filename', InputArgument::REQUIRED, 'filename')
-            ->addArgument('includebrokenDependencies', InputArgument::OPTIONAL,
+            ->addArgument('includeBrokenDependencies', InputArgument::OPTIONAL,
                 'include broken dependencies');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $filename = null;
-        $includebrokenDependencies = false;
+        $includeBrokenDependencies = false;
 
         if ( $input->getArgument('filename') != "" ) {
             $filename = $input->getArgument('filename');
@@ -46,10 +45,10 @@ class ImportResourceCommand extends Command
         }
 
         if ( $input->getArgument('includebrokenDependencies') == "true" ) {
-            $includebrokenDependencies = true;
+            $includeBrokenDependencies = true;
         }
 
-        $this->importService->importResource($filename, $includebrokenDependencies, 2, false);
+        $this->importService->importResource($filename, $includeBrokenDependencies, 2, false);
 
         return Command::SUCCESS;
     }

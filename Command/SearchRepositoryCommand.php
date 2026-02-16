@@ -6,9 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use Hboie\JasperReportBundle\RepositoryService;
-
+use Graalstrike\JasperReportBundle\RepositoryService;
 use Jaspersoft\Service\Criteria\RepositorySearchCriteria;
 use Jaspersoft\Service\Result\SearchResourcesResult;
 use Jaspersoft\Dto\Resource\ResourceLookup;
@@ -26,7 +24,7 @@ class SearchRepositoryCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('jasper:repository:search')
@@ -35,7 +33,7 @@ class SearchRepositoryCommand extends Command
             ->addArgument('detail', InputArgument::OPTIONAL, 'show full details');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $criteria = null;
 

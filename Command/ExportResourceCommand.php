@@ -6,8 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-
-use Hboie\JasperReportBundle\ImportExportService;
+use Graalstrike\JasperReportBundle\ImportExportService;
 
 use Jaspersoft\Dto\Resource\Resource;
 
@@ -24,7 +23,7 @@ class ExportResourceCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('jasper:export:resource')
@@ -35,7 +34,7 @@ class ExportResourceCommand extends Command
                 'skip dependent resources, e.g. database connection');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $uri = null;
         $filename = "export";

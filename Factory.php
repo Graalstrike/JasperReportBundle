@@ -29,7 +29,7 @@ class Factory
      */
     private $repositoryService;
 
-    public function createClient($config)
+    public function createClient($config): void
     {
         $server_url = $config['host'];
         $username = $config['username'];
@@ -49,7 +49,7 @@ class Factory
     /**
      * @return Client
      */
-    public function getClient()
+    public function getClient(): Client
     {
         return $this->reportClient;
     }
@@ -59,7 +59,7 @@ class Factory
      *
      * @return \Graalstrike\JasperReportBundle\ReportService
      */
-    public function getReportService()
+    public function getReportService(): ReportService
     {
         if ( ! isset( $this->reportService ) )
         {
@@ -73,7 +73,7 @@ class Factory
      *
      * @return \Graalstrike\JasperReportBundle\ImportExportService
      */
-    public function getImportExportService()
+    public function getImportExportService(): ImportExportService
     {
         if ( ! isset( $this->importExportService ) )
         {
@@ -87,7 +87,7 @@ class Factory
      *
      * @return \Graalstrike\JasperReportBundle\RepositoryService
      */
-    public function getRepositoryService()
+    public function getRepositoryService(): RepositoryService
     {
         if ( ! isset( $this->repositoryService ) )
         {

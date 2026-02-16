@@ -1,6 +1,6 @@
 {
   "name": "Graalstrike/jasper-report-bundle",
-  "description": "Symfony 2-7 / Symfony Flex Bundle integrating the Jaspersoft REST v2 client (jaspersoft/rest-client)",
+  "description": "Symfony 5-7 / Symfony Flex Bundle integrating the Jaspersoft REST v2 client (jaspersoft/rest-client)",
   "type": "symfony-bundle",
   "authors": [
     {
@@ -8,7 +8,7 @@
       "email": "contact@fforquignon.fr"
     }
   ],
-  "keywords": ["REST", "JasperReport", "symfony2", "symfony3", "symfony4", "symfony5", "bundle"],
+  "keywords": ["REST", "JasperReport", "symfony5", "symfony6", "symfony7", "bundle"],
   "homepage": "https://github.com/Graalstrike/JasperReportBundle",
   "license": "MIT",
   "require": {
