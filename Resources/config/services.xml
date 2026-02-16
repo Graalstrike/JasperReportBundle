@@ -7,7 +7,7 @@
     <services>
         <service
                 id="jasperreport.factory"
-                class="Hboie\JasperReportBundle\Factory"
+                class="Graalstrike\JasperReportBundle\Factory"
                 shared="false">
         </service>
 
@@ -20,42 +20,42 @@
 
         <service
                 id="jasperreport.reportservice"
-                class="Hboie\JasperReportBundle\ReportService"
+                class="Graalstrike\JasperReportBundle\ReportService"
                 shared="true">
             <factory service="jasperreport.factory" method="getReportService"/>
         </service>
 
-        <service id="Hboie\JasperReportBundle\ReportService" alias="jasperreport.reportservice" />
+        <service id="Graalstrike\JasperReportBundle\ReportService" alias="jasperreport.reportservice" />
 
         <service
                 id="jasperreport.importexportservice"
-                class="Hboie\JasperReportBundle\ImportExportService"
+                class="Graalstrike\JasperReportBundle\ImportExportService"
                 shared="true">
             <factory service="jasperreport.factory" method="getImportExportService"/>
         </service>
 
-        <service id="Hboie\JasperReportBundle\ImportExportService" alias="jasperreport.importexportservice" />
+        <service id="Graalstrike\JasperReportBundle\ImportExportService" alias="jasperreport.importexportservice" />
 
         <service
                 id="jasperreport.repositoryservice"
-                class="Hboie\JasperReportBundle\RepositoryService"
+                class="Graalstrike\JasperReportBundle\RepositoryService"
                 shared="true">
             <factory service="jasperreport.factory" method="getRepositoryService"/>
         </service>
 
-        <service id="Hboie\JasperReportBundle\RepositoryService" alias="jasperreport.repositoryservice" />
+        <service id="Graalstrike\JasperReportBundle\RepositoryService" alias="jasperreport.repositoryservice" />
 
-        <service id="Hboie\JasperReportBundle\Command\SearchRepositoryCommand">
+        <service id="Graalstrike\JasperReportBundle\Command\SearchRepositoryCommand">
             <argument type="service" id="jasperreport.repositoryservice" />
             <tag name="console.command"/>
         </service>
 
-        <service id="Hboie\JasperReportBundle\Command\ExportResourceCommand">
+        <service id="Graalstrike\JasperReportBundle\Command\ExportResourceCommand">
             <argument type="service" id="jasperreport.importexportservice" />
             <tag name="console.command"/>
         </service>
 
-        <service id="Hboie\JasperReportBundle\Command\ImportResourceCommand">
+        <service id="Graalstrike\JasperReportBundle\Command\ImportResourceCommand">
             <argument type="service" id="jasperreport.importexportservice" />
             <tag name="console.command"/>
         </service>

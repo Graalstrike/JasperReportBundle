@@ -1,11 +1,11 @@
 <?php
 
-namespace Hboie\JasperReportBundle;
+namespace Graalstrike\JasperReportBundle;
 
 use Jaspersoft\Client\Client;
-use Hboie\JasperReportBundle\ReportService;
-use Hboie\JasperReportBundle\ImportExportService;
-use Hboie\JasperReportBundle\RepositoryService;
+use Graalstrike\JasperReportBundle\ReportService;
+use Graalstrike\JasperReportBundle\ImportExportService;
+use Graalstrike\JasperReportBundle\RepositoryService;
 
 class Factory
 {
@@ -57,7 +57,7 @@ class Factory
     /**
      * get report-service
      *
-     * @return \Hboie\JasperReportBundle\ReportService
+     * @return \Graalstrike\JasperReportBundle\ReportService
      */
     public function getReportService()
     {
@@ -71,7 +71,7 @@ class Factory
     /**
      * get export-/import-service
      *
-     * @return \Hboie\JasperReportBundle\ImportExportService
+     * @return \Graalstrike\JasperReportBundle\ImportExportService
      */
     public function getImportExportService()
     {
@@ -85,7 +85,7 @@ class Factory
     /**
      * get repository service
      *
-     * @return \Hboie\JasperReportBundle\RepositoryService
+     * @return \Graalstrike\JasperReportBundle\RepositoryService
      */
     public function getRepositoryService()
     {

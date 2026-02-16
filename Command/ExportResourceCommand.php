@@ -1,6 +1,6 @@
 <?php
 
-namespace Hboie\JasperReportBundle\Command;
+namespace Graalstrike\JasperReportBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

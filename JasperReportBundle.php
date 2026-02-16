@@ -1,11 +1,11 @@
 <?php
 
-namespace Hboie\JasperReportBundle;
+namespace Graalstrike\JasperReportBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class HboieJasperReportBundle extends Bundle
+class JasperReportBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {

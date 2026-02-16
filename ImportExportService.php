@@ -1,6 +1,6 @@
 <?php
 
-namespace Hboie\JasperReportBundle;
+namespace Graalstrike\JasperReportBundle;
 
 use Jaspersoft\Dto\ImportExport\ExportTask;
 use Jaspersoft\Dto\ImportExport\ImportTask;

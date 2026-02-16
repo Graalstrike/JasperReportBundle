@@ -1,6 +1,6 @@
 <?php
 
-namespace Hboie\JasperReportBundle;
+namespace Graalstrike\JasperReportBundle;
 
 
 class ReportService
