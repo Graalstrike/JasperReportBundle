@@ -7,7 +7,7 @@
     <services>
         <service
                 id="jasperreport.factory"
-                class="Graalstrike\JasperReportBundle\Factory"
+                class="graalstrike\JasperReportBundle\Factory"
                 shared="false">
         </service>
 
@@ -20,20 +20,20 @@
 
         <service
                 id="jasperreport.reportservice"
-                class="Graalstrike\JasperReportBundle\ReportService"
+                class="graalstrike\JasperReportBundle\ReportService"
                 shared="true">
             <factory service="jasperreport.factory" method="getReportService"/>
         </service>
 
-        <service id="Graalstrike\JasperReportBundle\ReportService" alias="jasperreport.reportservice" />
+        <service id="graalstrike\JasperReportBundle\ReportService" alias="jasperreport.reportservice" />
 
         <service
                 id="jasperreport.repositoryservice"
-                class="Graalstrike\JasperReportBundle\RepositoryService"
+                class="graalstrike\JasperReportBundle\RepositoryService"
                 shared="true">
             <factory service="jasperreport.factory" method="getRepositoryService"/>
         </service>
 
-        <service id="Graalstrike\JasperReportBundle\RepositoryService" alias="jasperreport.repositoryservice" />
+        <service id="graalstrike\JasperReportBundle\RepositoryService" alias="jasperreport.repositoryservice" />
     </services>
 </container>
