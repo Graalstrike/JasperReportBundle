@@ -16,7 +16,7 @@
     "ext-zip": "*",
     "symfony/framework-bundle": "~6.0|~7.0",
     "symfony/filesystem": "~6.0|~7.0",
-    "Graalstrike/jasper-rest-client": "*"
+    "graalstrike/jasper-rest-client": "*"
   },
   "autoload": {
     "psr-4": {
